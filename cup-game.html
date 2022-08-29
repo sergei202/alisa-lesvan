@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<style>
+			.board {
+				border: 1px solid #ccc;
+				width: 1000px;
+				height: 300px;
+				margin: auto auto;
+				position: relative;
+			}
+			.cup {
+				border: 1px solid blue;
+				width: 100px;
+				height: 100px;
+				margin-top: 200px;
+				margin-left: 50px;
+				background-color: rgba(0,0,255,1);
+				display: inline-block;
+				border-radius: 50% 50% 0 0;
+				position: relative;
+			}
+
+			.cup.selected {
+				top: -50px;
+			}
+
+			#ball {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background-color: red;
+				position: absolute;
+				left: 75px;
+				top: 250px;
+				z-index: -10;
+			}
+
+			#message {
+				text-align: center;
+				font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+				margin-top:20px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="board">
+			<div class="cup"></div>
+			<div class="cup"></div>
+			<div class="cup"></div>
+			<div class="cup"></div>
+			<div class="cup"></div>
+			<div class="cup"></div>
+			<div id="ball"></div>
+		</div>
+
+		<div id="message"></div>
+
+		<script>
+			const cupCount = 6;
+
+			const cupElements = document.getElementsByClassName('cup');
+			const cupArray = Array.from(cupElements);
+			cupArray.forEach((cup,index) => {
+				cup.onclick = () => onCupClick(cup,index);
+			});
+
+			let ballIndex = moveBallRandomly();
+			let winCount = 0;
+			let tryCount = 0;
+
+			function onCupClick(cupElement, cupIndex) {
+				console.log('onCupClick: cupElement=%o, cupIndex=%o', cupElement, cupIndex);
+				cupArray.forEach(cup => cup.classList.remove('selected'));
+				cupElement.classList.add('selected');
+
+				tryCount++;
+
+				if(cupIndex===ballIndex) {
+					winCount++;
+					displayMessage('You win!  It took you ' + tryCount + ' tries.');
+					setTimeout(() => resetGame(), 2000);
+				} else {
+					displayMessage('You really suck at life.  Try #' + tryCount);
+				}
+			}
+
+			function moveBall(cupIndex) {
+				const ball = document.getElementById('ball');
+				const x = 75 + 157*cupIndex;
+				ball.style.left = x + 'px';
+			}
+
+			function moveBallRandomly() {
+				const randomIndex = Math.floor(Math.random()*cupCount);
+				moveBall(randomIndex);
+				return randomIndex;
+			}
+
+			function displayMessage(text) {
+				const messageElement = document.getElementById('message');
+				message.innerHTML = text;
+			}
+
+			function resetGame() {
+				tryCount = 0;
+				winCount = 0;
+				ballIndex = moveBallRandomly();
+				cupArray.forEach(cup => cup.classList.remove('selected'));
+				displayMessage('Try again, punk.');
+			}
+		</script>
+	</body>
+</html>
