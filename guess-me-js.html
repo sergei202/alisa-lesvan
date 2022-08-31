@@ -1,34 +1,34 @@
 <html>
-	<head>
-		<style>
-		</style>
-	</head>
-	<body>
-		<script>
-			// Create a random number between 1 and 1000
-			const secretNumber = Math.ceil(Math.random()*1000);
-			// console.log('secretNumber = %o', secretNumber);
+  <head>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script>
+      // Create a random number between 1 and 1000
+      const secretNumber = Math.ceil(Math.random()*1000);
+      // console.log('secretNumber = %o', secretNumber);
 
-			while(true) {
-				let guess = +prompt('Impress me');
-				if(Number.isNaN(guess) || !guess) break;
-				console.log('guess = %o', guess);
+      while(true) {
+        let guess = +prompt('Impress me');
+        if(Number.isNaN(guess) || !guess) break;
+        console.log('guess = %o', guess);
 
-				if(guess===secretNumber) {
-					alert('OMG!  YOU WON!');
-					break;
-				}
-				if(guess>secretNumber) {
-					alert('Too high.  Try again.');
-				}
-				if(guess<secretNumber) {
-					alert('Too low.  Try again.');
-				}
-			}
-			console.log('Outside of while loop');
+        if(guess===secretNumber) {
+          alert('OMG!  YOU WON!');
+          break;
+        }
+        if(guess>secretNumber) {
+          alert('Too high.  Try again.');
+        }
+        if(guess<secretNumber) {
+          alert('Too low.  Try again.');
+        }
+      }
+      console.log('Outside of while loop');
 
-		</script>
-	</body>
+    </script>
+  </body>
 </html>
 
 

@@ -1,27 +1,27 @@
 <html>
-	<head>
-		<style>
-			#box {
-				border: 1px solid black;
-				width: 100px;
-				height: 100px;
-				position: absolute;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="box"></div>
+  <head>
+    <style>
+      #box {
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
 
-		<script>
-			let box = document.getElementById('box');
+    <script>
+      let box = document.getElementById('box');
 
-			let counter = 0;
-			setInterval(() => {
-				console.log('counter = ', counter);
-				box.style.left = counter + 'px';
-				box.style.top = counter + 'px';
-				counter = counter + 5;
-			}, 100);
-		</script>
-	</body>
+      let counter = 0;
+      setInterval(() => {
+        console.log('counter = ', counter);
+        box.style.left = counter + 'px';
+        box.style.top = counter + 'px';
+        counter = counter + 5;
+      }, 100);
+    </script>
+  </body>
 </html>
